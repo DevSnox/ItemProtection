@@ -4,66 +4,46 @@ import org.bukkit.inventory.ItemStack;
 
 @Deprecated
 public class ItemProtectionAPI {
-    /*private static final ItemProtection itemProtection = new DefaultItemProtection()
-    {
-        @Override
-        public boolean isLoaded()
-        {
-            return false;
-        }
-        
-        @Nullable
-        @Override
-        public ItemProtection getInstance()
-        {
-            return null;
-        }
-        
-        @NotNull
-        @Override
-        public ItemStack addProtection(@NotNull ItemStack itemStack)
-        {
-            return null;
-        }
-        
-        @Override
-        public void validate(@NotNull ItemStack itemStack)
-        {
-        }
-        
-        @Override
-        public boolean alreadyUsed(@NotNull ItemStack itemStack)
-        {
-            return false;
-        }
-    };*/
+    private static ItemProtectionAPI instance;
     
     public static boolean isLoaded()
     {
-        throw new UnsupportedOperationException("not implement");
-        /*return itemProtection.isLoaded();*/
+        return ItemProtectionFactory.INSTANCE.isLoaded();
     }
     
     public static ItemProtectionAPI getInstance()
     {
-        throw new UnsupportedOperationException("not implement");
+        return instance;
     }
     
     public ItemStack addProtection(ItemStack itemStack)
     {
-        throw new UnsupportedOperationException("not implement");
-        /* return itemProtection.addProtection(itemStack);*/
+        if (!check(itemStack))
+        {
+            return null;
+        }
+        return ItemProtectionFactory.INSTANCE.getItemProtection().addProtection(itemStack);
     }
     
     public void validate(ItemStack itemStack)
     {
-        throw new UnsupportedOperationException("not implement");
-        /* itemProtection.validate(itemStack);*/
+        if (!check(itemStack))
+        {
+            ItemProtectionFactory.INSTANCE.getItemProtection().validate(itemStack);
+        }
     }
     
     public boolean alreadyUsed(ItemStack itemStack)
     {
-        throw new UnsupportedOperationException("not implement");
-        /* return itemProtection.alreadyUsed(itemStack);*/
+        if (check(itemStack))
+        {
+            return false;
+        }
+        return ItemProtectionFactory.INSTANCE.getItemProtection().alreadyUsed(itemStack);
+    }
+    
+    private Boolean check(ItemStack itemStack)
+    {
+        return itemStack != null || ItemProtectionFactory.INSTANCE.isLoaded();
     }
 }

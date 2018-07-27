@@ -9,16 +9,10 @@ import org.bukkit.inventory.ItemStack
  */
 interface ItemProtection {
 
-    val instance: ItemProtection?
-
     fun addProtection(itemStack: ItemStack): ItemStack
 
     fun validate(itemStack: ItemStack)
 
     fun alreadyUsed(itemStack: ItemStack): Boolean
-
-    fun isLoaded(): Boolean {
-        TODO()
-    }
 
 }
