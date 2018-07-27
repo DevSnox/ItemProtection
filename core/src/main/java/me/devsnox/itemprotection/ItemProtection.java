@@ -12,7 +12,7 @@ public class ItemProtection extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.protectionLoader = new ProtectionLoader(this);
+        this.protectionLoader = new ProtectionLoader(getDataFolder());
         new ItemProtectionAPI(this);
         ItemProtectionFactory.INSTANCE.setItemProtection(new SimpleItemProtection());
         
