@@ -5,15 +5,26 @@ import me.devsnox.itemprotection.ItemProtection;
 import me.devsnox.itemprotection.protection.ProtectionLoader;
 import org.bukkit.inventory.ItemStack;
 
-public class ItemProtectionAPI {
-
-    private static ItemProtectionAPI instance;
-
-    private ProtectionLoader protectionLoader;
-
-    public ItemProtectionAPI(ItemProtection itemProtection) {
+@Deprecated
+public class OldItemProtectionAPI
+{
+    private static OldItemProtectionAPI instance;
+    private final ProtectionLoader protectionLoader;
+    
+    public OldItemProtectionAPI(ItemProtection itemProtection)
+    {
         this.protectionLoader = itemProtection.getProtectionLoader();
         instance = this;
+    }
+    
+    public static boolean isLoaded()
+    {
+        return instance != null;
+    }
+    
+    public static OldItemProtectionAPI getInstance()
+    {
+        return instance;
     }
 
     public ItemStack addProtection(ItemStack itemStack) {
@@ -36,13 +47,5 @@ public class ItemProtectionAPI {
         } else {
             return 0;
         }
-    }
-
-    public static boolean isLoaded() {
-        return instance != null;
-    }
-
-    public static ItemProtectionAPI getInstance() {
-        return instance;
     }
 }

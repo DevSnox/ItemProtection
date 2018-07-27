@@ -4,7 +4,7 @@ import org.bukkit.inventory.ItemStack;
 
 @Deprecated
 public class ItemProtectionAPI {
-    private static ItemProtectionAPI instance;
+    private static final ItemProtectionAPI instance = new ItemProtectionAPI();
     
     public static boolean isLoaded()
     {

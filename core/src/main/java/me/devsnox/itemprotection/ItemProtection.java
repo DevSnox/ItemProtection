@@ -1,6 +1,5 @@
 package me.devsnox.itemprotection;
 
-import me.devsnox.itemprotection.api.ItemProtectionAPI;
 import me.devsnox.itemprotection.api.ItemProtectionFactory;
 import me.devsnox.itemprotection.api.SimpleItemProtection;
 import me.devsnox.itemprotection.protection.ProtectionLoader;
@@ -13,7 +12,7 @@ public class ItemProtection extends JavaPlugin {
     @Override
     public void onEnable() {
         this.protectionLoader = new ProtectionLoader(getDataFolder());
-        new ItemProtectionAPI(this);
+//        new ItemProtectionAPI(this);
         ItemProtectionFactory.INSTANCE.setItemProtection(new SimpleItemProtection());
         
     }
